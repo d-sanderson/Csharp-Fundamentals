@@ -16,16 +16,18 @@ namespace GradeBook
     class Program
     {
         // Main is a method (a function within an object.)
+        // What is the static keyword?
+        // The static keyword negates some of the benefits of object oriented programming by violating rules of encapsulation if used improperly
         static void Main(string[] args)
         {
-            var book = new Book();
-            Book book2 = new Book();
+            var book = new Book("David's Grade Book");
+            Book book2 = new Book("Morty's Grade Book");
             book.AddGrade(89.3);
             book2.AddGrade(43.4);
             book2.AddGrade(90.4);
             book2.AddGrade(79.4);
             book2.AddGrade(80.4);
-            book2.GetGradeAverage();
+            book2.GetHighestGrade();
         }
     }
 }
