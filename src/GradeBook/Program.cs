@@ -21,13 +21,11 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book("David");
-            Book book2 = new Book("Morty");
-            book.AddGrade(89.3);
-            book2.AddGrade(43.4);
-            book2.AddGrade(90.4);
-            book2.AddGrade(79.4);
-            book2.AddGrade(80.4);
-            book2.ShowStatistics();
+            book.AddGrade(53.4);
+            book.AddGrade(90.4);
+            book.AddGrade(79.4);
+            book.AddGrade(80.4);
+            book.ShowStatistics();
         }
     }
 }
