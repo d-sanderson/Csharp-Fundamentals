@@ -2,10 +2,16 @@ using System;
 //xunit is not a part of .NET core, it is a Nuget package available for .Net Core
 using Xunit;
 
+
 namespace GradeBook.Tests
 {
     // GOAL: write unit tests that will verify the logic inside the Book class that lives inside the GradeBook project 
-    // Name you test after the Class
+    // Name your tests after the Class they test I.E BookTests are tests for the Book Class.
+
+    // unit tests are broken into 3 DISTINCT SECTIONS:
+    // 1) The ARRANGE Section - where you put together all test data, organize for following sections
+    // 2) The ACT Section - do something that produces a result
+    // 3) The ASSERT Section - verify that the expected result matches(or doesn't match) the actual result
     public class BookTests
     {
         // Fact is an ATTRIBUTE in C# 
@@ -26,13 +32,13 @@ namespace GradeBook.Tests
 
             // act
             var actual = book.GetHighestGrade();
-            
+
             // assert
             Assert.Equal(actual, expected);
 
         }
         [Fact]
-           public void ItReturnsLowestGrade()
+        public void ItReturnsLowestGrade()
         {
             // arrange
             var book = new Book("Test Book");
@@ -45,13 +51,13 @@ namespace GradeBook.Tests
 
             // act
             var actual = book.GetLowestGrade();
-            
+
             // assert
             Assert.Equal(actual, expected);
 
         }
-                [Fact]
-           public void ItReturnsAverageGrade()
+        [Fact]
+        public void ItReturnsAverageGrade()
         {
             // arrange
             var book = new Book("Test Book");
@@ -64,13 +70,13 @@ namespace GradeBook.Tests
 
             // act
             var actual = book.GetGradeAverage();
-            
+
             // assert
             Assert.Equal(actual, expected);
 
         }
         [Fact]
-           public void TestGetStats()
+        public void TestGetStats()
         {
             // arrange
             var book = new Book("Test Book");
@@ -78,20 +84,17 @@ namespace GradeBook.Tests
             book.AddGrade(90.5);
             book.AddGrade(77.3);
 
-            
+
             // act
             var result = book.GetStatistics();
-            
+
             // assert
             Assert.Equal(85.6, result.Average, 1);
             Assert.Equal(90.5, result.High, 1);
             Assert.Equal(77.3, result.Low, 1);
 
         }
-        // unit tests are broken into 3 DISTINCT SECTIONS:
-        // 1) The ARRANGE Section - where you put together all test data, organize for following sections
-        // 2) The ACT Section - do something that produces a result
-        // 3) The ASSERT Section - verify that the expected result matches(or doesn't match) the actual result
+
     }
 
 }
