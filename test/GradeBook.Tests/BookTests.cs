@@ -98,3 +98,15 @@ namespace GradeBook.Tests
     }
 
 }
+
+// Difference between VALUE types and REFERENCE types
+// var b = new Book("grades");
+// b is a REFERENCE TYPE
+// when code is executed, a space is created in memory for the value b;
+// Somewhere in the gbs of your system memory, there are memory cells where the .NET runtime allocates space and stores the value.
+// The variable doesn't "contain" the Book it stores a reference to it.
+
+// var x = 3;
+// int x is a VALUE type
+// runtime stores number directly in the variable
+
