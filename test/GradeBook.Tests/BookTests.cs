@@ -60,7 +60,7 @@ namespace GradeBook.Tests
             book.AddGrade(39.3);
             book.AddGrade(29.3);
             book.AddGrade(19.3);
-
+            var expected = 47.42;
 
             // act
             var actual = book.GetGradeAverage();
@@ -83,9 +83,9 @@ namespace GradeBook.Tests
             var result = book.GetStatistics();
             
             // assert
-            Assert.Equal(85.6, result.Average);
-            Assert.Equal(90.3, result.High);
-            Assert.Equal(77.3, result.Low);
+            Assert.Equal(85.6, result.Average, 1);
+            Assert.Equal(90.5, result.High, 1);
+            Assert.Equal(77.3, result.Low, 1);
 
         }
         // unit tests are broken into 3 DISTINCT SECTIONS:
