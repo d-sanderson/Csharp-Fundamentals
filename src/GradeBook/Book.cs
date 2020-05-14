@@ -6,7 +6,7 @@ using System.Collections.Generic;
 // We use a testrunner to run unit tests. xUnit.net is a test runner we will be using in this course
 namespace GradeBook
 {
-    class Book
+    public class Book
     {
         //Write an explicit constructor if a constructor is not provided .NET does the default initialization
         public Book(string name)
@@ -49,7 +49,7 @@ namespace GradeBook
             this.GetLowestGrade();
         }
 
-        public void GetHighestGrade()
+        public double GetHighestGrade()
         {
             // start highestGrade at the lowest possible value
             var highestGrade = double.MinValue;
@@ -61,6 +61,7 @@ namespace GradeBook
                 }
             }
             Console.WriteLine($"{name}'s highest grade is {highestGrade}");
+            return highestGrade;
         }
 
         public void GetLowestGrade()
