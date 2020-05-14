@@ -25,6 +25,7 @@ namespace GradeBook
             book.AddGrade(90.4);
             book.AddGrade(79.4);
             book.AddGrade(80.4);
+            var stats = book.GetStatistics();
             book.ShowStatistics();
         }
     }

@@ -50,7 +50,44 @@ namespace GradeBook.Tests
             Assert.Equal(actual, expected);
 
         }
+                [Fact]
+           public void ItReturnsAverageGrade()
+        {
+            // arrange
+            var book = new Book("Test Book");
+            book.AddGrade(99.9);
+            book.AddGrade(49.3);
+            book.AddGrade(39.3);
+            book.AddGrade(29.3);
+            book.AddGrade(19.3);
 
+
+            // act
+            var actual = book.GetGradeAverage();
+            
+            // assert
+            Assert.Equal(actual, expected);
+
+        }
+        [Fact]
+           public void TestGetStats()
+        {
+            // arrange
+            var book = new Book("Test Book");
+            book.AddGrade(89.1);
+            book.AddGrade(90.5);
+            book.AddGrade(77.3);
+
+            
+            // act
+            var result = book.GetStatistics();
+            
+            // assert
+            Assert.Equal(85.6, result.Average);
+            Assert.Equal(90.3, result.High);
+            Assert.Equal(77.3, result.Low);
+
+        }
         // unit tests are broken into 3 DISTINCT SECTIONS:
         // 1) The ARRANGE Section - where you put together all test data, organize for following sections
         // 2) The ACT Section - do something that produces a result

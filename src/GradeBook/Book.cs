@@ -27,7 +27,7 @@ namespace GradeBook
         // The keyword `public` is an accesss modifier, it controls where you can use that function it precedes.
         // public means code outside of this class can be used outside of the book class
         // The method GetGradeAverage is a MEMBER of the Class book
-        public void GetGradeAverage()
+        public double GetGradeAverage()
         {
             // var (implicit typing) vs using explicity typing string, int, double, byte, etc.
             //Initialize a list
@@ -39,14 +39,24 @@ namespace GradeBook
             double avg;
             double count = grades.Count;
             avg = sum / grades.Count;
-            Console.WriteLine($"{name}'s average grade is {avg:N2}");
+            return avg;
         }
 
+        public Statistics GetStatistics()
+        {
+            var result = new Statistics();
+            var avg = this.GetGradeAverage();
+            var highest = this.GetHighestGrade();
+            var lowest = this.GetLowestGrade();
+            result.High = highest;
+            result.Low = lowest;
+            result.Average = avg;
+            return result;
+        }
         public void ShowStatistics()
         {
-            this.GetGradeAverage();
-            this.GetHighestGrade();
-            this.GetLowestGrade();
+            var result = this.GetStatistics();
+            Console.WriteLine($"{name}'s average grade is {result.Average:N2}. {name}'s highest grade is {result.High}. {name}'s lowest grade is {result.Low}");
         }
 
         public double GetHighestGrade()
@@ -60,7 +70,6 @@ namespace GradeBook
                     highestGrade = grade;
                 }
             }
-            Console.WriteLine($"{name}'s highest grade is {highestGrade}");
             return highestGrade;
         }
 
@@ -72,7 +81,7 @@ namespace GradeBook
             {
                 lowestGrade = Math.Min(grade, lowestGrade);
             }
-            Console.WriteLine($"{name}'s lowest grade is {lowestGrade}");
+            Console.WriteLine($"");
             return lowestGrade;
         }
 
