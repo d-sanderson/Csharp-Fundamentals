@@ -14,7 +14,7 @@ namespace GradeBook
             grades = new List<double>();
             // the this (keyword) refers to the object that is currently being operated on. 
             // Assign the parameter name (above) to the Books name variable within Class books.
-            this.name = name;
+            Name = name;
         }
         // Field Definitition, looks very much like a variable declaration
 
@@ -56,7 +56,7 @@ namespace GradeBook
         public void ShowStatistics()
         {
             var result = this.GetStatistics();
-            Console.WriteLine($"{name}'s average grade is {result.Average:N2}. {name}'s highest grade is {result.High}. {name}'s lowest grade is {result.Low}");
+            Console.WriteLine($"{Name}'s average grade is {result.Average:N2}. {Name}'s highest grade is {result.High}. {Name}'s lowest grade is {result.Low}");
         }
 
         public double GetHighestGrade()
@@ -89,7 +89,8 @@ namespace GradeBook
         // The private keyword make it so the variable/method is only avaiable to other members of the class.
         // the variables below are called INSTANCE FIELDS
         private List<double> grades;
-        private string name;
+        // a public member always has an Uppercase name
+        public string Name;
 
     }
 }

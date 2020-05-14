@@ -6,7 +6,7 @@ using Xunit;
 namespace GradeBook.Tests
 {
     // GOAL: write unit tests that will verify the logic inside the Book class that lives inside the GradeBook project 
-    // Name your tests after the Class they test I.E BookTests are tests for the Book Class.
+    // Name tests Class after the Class they test I.E BookTests include tests for the Book Class.
 
     // unit tests are broken into 3 DISTINCT SECTIONS:
     // 1) The ARRANGE Section - where you put together all test data, organize for following sections
@@ -19,7 +19,7 @@ namespace GradeBook.Tests
         // In the example below, Fact is a little piece of data or ATTRIBUTE that is ATTACHED to Test1()
         // We decorate unit testing methods with the Fact method
         [Fact]
-        public void ItReturnsHighestGrade()
+        public void BookReturnsHighestGrade()
         {
             // arrange
             var book = new Book("Test Book");
@@ -38,7 +38,7 @@ namespace GradeBook.Tests
 
         }
         [Fact]
-        public void ItReturnsLowestGrade()
+        public void BookReturnsLowestGrade()
         {
             // arrange
             var book = new Book("Test Book");
@@ -57,7 +57,7 @@ namespace GradeBook.Tests
 
         }
         [Fact]
-        public void ItReturnsAverageGrade()
+        public void BookReturnsAverageGrade()
         {
             // arrange
             var book = new Book("Test Book");
