@@ -56,12 +56,20 @@ namespace GradeBook
         public void GetLowestGrade()
         {
             // start highestGrade at the lowest possible value
-            var lowestGrade = double.MinValue;
+            var lowestGrade = double.MaxValue;
             foreach (var grade in grades)
             {
                 lowestGrade = Math.Min(grade, lowestGrade);
             }
-            Console.WriteLine($"{name}'s highest grade is {lowestGrade}");
+            Console.WriteLine($"{name}'s lowest grade is {lowestGrade}");
+        }
+
+        public void ShowStatistics()
+        {
+            // start highestGrade at the lowest possible value
+            this.GetGradeAverage();
+            this.GetHighestGrade();
+            this.GetLowestGrade();
         }
         // The private keyword make it so the variable/method is only avaiable to other members of the class.
         // the variables below are called INSTANCE FIELDS

@@ -27,9 +27,7 @@ namespace GradeBook
             book2.AddGrade(90.4);
             book2.AddGrade(79.4);
             book2.AddGrade(80.4);
-            book2.GetHighestGrade();
-            book2.GetLowestGrade();
-            book2.GetGradeAverage();
+            book2.ShowStatistics();
         }
     }
 }
