@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-
+// UNIT Testing 
+// Write code that tests edge cases and common input to make sure your code is working working as intended.
+// We use a testrunner to run unit tests. xUnit.net is a test runner we will be using in this course
 namespace GradeBook
 {
     class Book
