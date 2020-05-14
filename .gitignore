@@ -5,7 +5,7 @@ site.css
 site.min.css
 
 # IDE Files
-/vscode
+.vscode
 
 # Packages
 node_modules/
