@@ -64,7 +64,7 @@ namespace GradeBook
             return highestGrade;
         }
 
-        public void GetLowestGrade()
+        public double GetLowestGrade()
         {
             // start highestGrade at the lowest possible value
             var lowestGrade = double.MaxValue;
@@ -73,6 +73,7 @@ namespace GradeBook
                 lowestGrade = Math.Min(grade, lowestGrade);
             }
             Console.WriteLine($"{name}'s lowest grade is {lowestGrade}");
+            return lowestGrade;
         }
 
 
