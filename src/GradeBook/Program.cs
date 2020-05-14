@@ -19,19 +19,13 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book();
+            Book book2 = new Book();
             book.AddGrade(89.3);
-            // var (implicit typing) vs using explicity typing string, int, double, byte, etc.
-            //Initialize a list
-            var grades = new List<double>() { 43.5, 2.5, 31.5 };
-            double sum = 0.0;
-            foreach (var n in grades)
-            {
-                sum += n;
-            }
-            double avg;
-            double count = grades.Count;
-            avg = sum / grades.Count;
-            Console.WriteLine($"The student's average grade is {avg:N2}");
+            book2.AddGrade(43.4);
+            book2.AddGrade(90.4);
+            book2.AddGrade(79.4);
+            book2.AddGrade(80.4);
+            book2.GetGradeAverage();
         }
     }
 }
