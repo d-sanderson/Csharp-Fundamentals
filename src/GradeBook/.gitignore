@@ -1,0 +1,20 @@
+# Build results
+obj/
+bin/
+site.css
+site.min.css
+
+# IDE Files
+/vscode
+
+# Packages
+node_modules/
+packages/
+
+# Database
+*.db
+/Orchestra/appsettings.Local.json
+
+# Test Results
+TestResults/
+MigrationBackup/
