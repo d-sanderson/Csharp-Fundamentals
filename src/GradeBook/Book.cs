@@ -37,21 +37,36 @@ namespace GradeBook
             double avg;
             double count = grades.Count;
             avg = sum / grades.Count;
-            Console.WriteLine($"The student's average grade is {avg:N2}");
+            Console.WriteLine($"{name}'s average grade is {avg:N2}");
         }
-        public void GetHighestGrade() {
-            var highestGrade = 0.0;
-            foreach(var grade in grades) {
-                if(grade > highestGrade) {
+        public void GetHighestGrade()
+        {
+            // start highestGrade at the lowest possible value
+            var highestGrade = double.MinValue;
+            foreach (var grade in grades)
+            {
+                if (grade > highestGrade)
+                {
                     highestGrade = grade;
                 }
             }
-            Console.WriteLine(highestGrade);
+            Console.WriteLine($"{name}'s highest grade is {highestGrade}");
+        }
+
+        public void GetLowestGrade()
+        {
+            // start highestGrade at the lowest possible value
+            var lowestGrade = double.MinValue;
+            foreach (var grade in grades)
+            {
+                lowestGrade = Math.Min(grade, lowestGrade);
+            }
+            Console.WriteLine($"{name}'s highest grade is {lowestGrade}");
         }
         // The private keyword make it so the variable/method is only avaiable to other members of the class.
         // the variables below are called INSTANCE FIELDS
         private List<double> grades;
         private string name;
-    
+
     }
 }
