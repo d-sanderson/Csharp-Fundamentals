@@ -37,11 +37,22 @@ namespace GradeBook
                     book.AddGrade(grade);
                     System.Console.WriteLine($"{grade} added");
                 }
-                // Catch ANY type of exception
-                catch (Exception ex)
+                // Catch ANY type of Exception
+                // catch(Exception ex) <- Don't do this in the wild - we don't know what kind of errors will occur here.
+                // You want to write catch statements that will ONLY handle EXCEPTIONS that you can HANDLE
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
-                    
+
+                }
+                catch (FormatException ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                }
+                // always execute code, whether it executes succesfully or throws an Exception
+                finally
+                {
+                    Console.WriteLine("runs everytime.");
                 }
             }
 
