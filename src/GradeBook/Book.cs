@@ -157,23 +157,27 @@ namespace GradeBook
         // Access modifier (public)
         public string Name
         {
-            get
-            {
-                return name.ToUpper();
-            }
-            set
-            {
-                // Implicit variable named value is accessible with your set method
-                if (value == null)
-                {
-                }
-                else if (!String.IsNullOrEmpty(value))
-                {
-                    name = value;
-                }
-            }
+            // Auto Property - shorthand version 
+            get;
+            // With the private access modifier, if an operation wants to write to name outside of the Book class, it cannot.
+            private set;
+            // get
+            // {
+            //     return name.ToUpper();
+            // }
+            // set
+            // {
+            //     // Implicit variable named value is accessible with your set method
+            //     if (value == null)
+            //     {
+            //     }
+            //     else if (!String.IsNullOrEmpty(value))
+            //     {
+            //         name = value;
+            //     }
+            // }
         }
-
+// Property VS Field they are very similar but there are differences some come up during Serialization and Reflection. You can apply different access modifiers to get and set.
         private string name;
 
 
