@@ -115,7 +115,9 @@ namespace GradeBook
 
             return lowestGrade;
         }
-        public void AddLetterGrade(char letter)
+        // Method Overloading AddGrade above takes a double here it takes a char. 
+        // This changes the method signature and allows you to have two methods that have the same name.
+        public void AddGrade(char letter)
         {
             switch (letter)
             {
@@ -148,7 +150,32 @@ namespace GradeBook
         // the variables below are called INSTANCE FIELDS
         private List<double> grades;
         // a public member always has an Uppercase name
-        public string Name;
+        // public string Name;
+
+        // PROPERTIES
+
+        // Access modifier (public)
+        public string Name
+        {
+            get
+            {
+                return name.ToUpper();
+            }
+            set
+            {
+                // Implicit variable named value is accessible with your set method
+                if (value == null)
+                {
+                }
+                else if (!String.IsNullOrEmpty(value))
+                {
+                    name = value;
+                }
+            }
+        }
+
+        private string name;
+
 
     }
 }

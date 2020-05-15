@@ -35,6 +35,7 @@ namespace GradeBook
                 {
                     var grade = double.Parse(input);
                     book.AddGrade(grade);
+                    book.AddGrade('A');
                     System.Console.WriteLine($"{grade} added");
                 }
                 // Catch ANY type of Exception
