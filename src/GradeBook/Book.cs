@@ -85,12 +85,11 @@ namespace GradeBook
             return lowestGrade;
         }
 
-
         // The private keyword make it so the variable/method is only avaiable to other members of the class.
         // the variables below are called INSTANCE FIELDS
         private List<double> grades;
         // a public member always has an Uppercase name
         public string Name;
-
+    
     }
 }
