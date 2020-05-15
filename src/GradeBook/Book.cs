@@ -21,10 +21,12 @@ namespace GradeBook
         // Add grade is an INSTANCE MEMBER of the class book. 
         public void AddGrade(double grade)
         {
-            if(grade <= 100 && grade >= 0) {
-            grades.Add(grade);
+            if (grade <= 100 && grade >= 0)
+            {
+                grades.Add(grade);
             }
-            else {
+            else
+            {
                 Console.WriteLine("Grade must be between 0 and 100");
             }
         }
@@ -53,11 +55,34 @@ namespace GradeBook
             var avg = this.GetGradeAverage();
             var highest = this.GetHighestGrade();
             var lowest = this.GetLowestGrade();
+            var avgLtrGrade = this.GetGradeLetterAverage();
             result.High = highest;
             result.Low = lowest;
             result.Average = avg;
+            result.Letter = avgLtrGrade;
             return result;
         }
+
+        private char GetGradeLetterAverage()
+        {
+            var avg = this.GetGradeAverage();
+            switch (avg)
+            {
+                case var d when d >= 90.0:
+                    return 'A';
+                case var d when d >= 80.0:
+                    return 'B';
+
+                case var d when d >= 70.0:
+                    return 'C';
+
+                case var d when d >= 60.0:
+                    return 'D';
+                default:
+                    return 'F';
+            }
+        }
+
         public void ShowStatistics()
         {
             var result = this.GetStatistics();
@@ -86,18 +111,43 @@ namespace GradeBook
             {
                 lowestGrade = Math.Min(grade, lowestGrade);
             }
-            Console.WriteLine($"");
+
             return lowestGrade;
         }
+        public void AddLetterGrade(char letter)
+        {
+            switch (letter)
+            {
+                case 'A':
+                    AddGrade(90);
+                    break;
+                case 'B':
+                    AddGrade(80);
+                    break;
+                case 'C':
+                    AddGrade(70);
+                    break;
+                case 'D':
+                    AddGrade(60);
+                    break;
+                case 'F':
+                    AddGrade(50);
+                    break;
+                default:
+                    AddGrade(0);
+                    break;
+            }
+        }
+
         public List<double> GetGrades()
         {
-           return grades;
+            return grades;
         }
         // The private keyword make it so the variable/method is only avaiable to other members of the class.
         // the variables below are called INSTANCE FIELDS
         private List<double> grades;
         // a public member always has an Uppercase name
         public string Name;
-    
+
     }
 }

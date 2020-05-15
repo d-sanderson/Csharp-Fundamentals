@@ -28,6 +28,7 @@ namespace GradeBook
             book.AddGrade(-50.3);
             var stats = book.GetStatistics();
             book.ShowStatistics();
+            System.Console.WriteLine($"The letter is {stats.Letter}");
         }
     }
 }
