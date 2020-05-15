@@ -94,7 +94,18 @@ namespace GradeBook.Tests
             Assert.Equal(77.3, result.Low, 1);
 
         }
+        [Fact]
+        public void BookWontAcceptInvalidGrade()
+        {
+            // arrange
+            var book = new Book("Test Book");
+            book.AddGrade(-5.0);
+            book.AddGrade(344);
+            var grades = book.GetGrades();
+            // assert
+            Assert.Equal(0, grades.Count);
 
+        }
     }
 
 }

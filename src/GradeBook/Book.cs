@@ -21,7 +21,12 @@ namespace GradeBook
         // Add grade is an INSTANCE MEMBER of the class book. 
         public void AddGrade(double grade)
         {
+            if(grade <= 100 && grade >= 0) {
             grades.Add(grade);
+            }
+            else {
+                Console.WriteLine("Grade must be between 0 and 100");
+            }
         }
         // ACCESS MODIFIERS
         // The keyword `public` is an accesss modifier, it controls where you can use that function it precedes.
@@ -84,7 +89,10 @@ namespace GradeBook
             Console.WriteLine($"");
             return lowestGrade;
         }
-
+        public List<double> GetGrades()
+        {
+           return grades;
+        }
         // The private keyword make it so the variable/method is only avaiable to other members of the class.
         // the variables below are called INSTANCE FIELDS
         private List<double> grades;
