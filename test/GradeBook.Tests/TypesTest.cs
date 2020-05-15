@@ -9,9 +9,38 @@ namespace GradeBook.Tests
     // 1) The ARRANGE Section - where you put together all test data, organize for following sections
     // 2) The ACT Section - do something that produces a result
     // 3) The ASSERT Section - verify that the expected result matches(or doesn't match) the actual result
+
+
+    // DELEGATES allows you to define a variable that can point to or invoke different METHODS.
+    // Defines return type AND shape of data that a method returns.
+    public delegate string WriteLogDelegate(string logMsg);
     public class TypeTests
     {
+        int count = 0;
+    
+        [Fact]
+        public void WriteLogDelegateCanPointToMethod()
+        {
+            WriteLogDelegate log = ReturnMsg;
 
+            // log = new WriteLogDelegate(ReturnMsg);
+            // OR
+            log += ReturnMsg;
+            log += IncrementCount;
+            var result = log("Hello!");
+            Assert.Equal(3, count);
+
+        }
+        string IncrementCount(string message)
+        {
+            count++;
+            return message.ToLower();
+        }
+        string ReturnMsg(string message)
+        {
+            count++;
+            return message;
+        }
         [Fact]
         public void GetBookReturnsDifferentObjects()
         {
@@ -49,9 +78,9 @@ namespace GradeBook.Tests
 
         }
         // taking the reference to book and placing the reference(point) into the parameter
-        private void GetBookSetName(ref Book book, string name)
+        private void GetBookSetName(ref InMemoryBook book, string name)
         {
-            book = new Book(name);
+            book = new InMemoryBook(name);
             book.Name = name;
         }
         [Fact]
@@ -66,10 +95,9 @@ namespace GradeBook.Tests
 
         }
         // taking value inside book1 and copying its value and placing it into the parameter
-        private void GetBookSetName(Book book, string name)
+        private void GetBookSetName(InMemoryBook book, string name)
         {
-            book = new Book(name);
-            book.Name = name;
+            book = new InMemoryBook(name);
         }
         [Fact]
         public void CanSetNameFromReference()
@@ -80,16 +108,16 @@ namespace GradeBook.Tests
             Assert.Equal("New Name", book1.Name);
 
         }
-        private void SetName(Book book, string name)
+        private void SetName(InMemoryBook book, string name)
         {
             book.Name = name;
         }
 
         // object is the lowest base type in the .NET framework
         // everything derives from the object base class
-        Book GetBook(string name)
+        InMemoryBook GetBook(string name)
         {
-            return new Book(name);
+            return new InMemoryBook(name);
         }
         [Fact]
         public void Test2()

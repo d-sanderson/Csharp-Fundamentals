@@ -22,7 +22,7 @@ namespace GradeBook.Tests
         public void BookReturnsHighestGrade()
         {
             // arrange
-            var book = new Book("Test Book");
+            var book = new InMemoryBook("Test Book");
             book.AddGrade(99.9);
             book.AddGrade(49.3);
             book.AddGrade(39.3);
@@ -41,7 +41,7 @@ namespace GradeBook.Tests
         public void BookReturnsLowestGrade()
         {
             // arrange
-            var book = new Book("Test Book");
+            var book = new InMemoryBook("Test Book");
             book.AddGrade(99.9);
             book.AddGrade(49.3);
             book.AddGrade(39.3);
@@ -60,7 +60,7 @@ namespace GradeBook.Tests
         public void BookReturnsAverageGrade()
         {
             // arrange
-            var book = new Book("Test Book");
+            var book = new InMemoryBook("Test Book");
             book.AddGrade(99.9);
             book.AddGrade(49.3);
             book.AddGrade(39.3);
@@ -79,7 +79,7 @@ namespace GradeBook.Tests
         public void TestGetStats()
         {
             // arrange
-            var book = new Book("Test Book");
+            var book = new InMemoryBook("Test Book");
             book.AddGrade(89.1);
             book.AddGrade(90.5);
             book.AddGrade(77.3);
@@ -98,7 +98,7 @@ namespace GradeBook.Tests
         public void BookWontAcceptInvalidGrade()
         {
             // arrange
-            var book = new Book("Test Book");
+            var book = new InMemoryBook("Test Book");
             book.AddGrade(-5.0);
             book.AddGrade(344);
             var grades = book.GetGrades();

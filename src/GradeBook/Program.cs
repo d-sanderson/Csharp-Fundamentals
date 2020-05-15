@@ -20,7 +20,21 @@ namespace GradeBook
         // The static keyword negates some of the benefits of object oriented programming by violating rules of encapsulation if used improperly
         static void Main(string[] args)
         {
-            var book = new Book("David");
+            IBook book = new DiskBook("David");
+            book.GradeAdded += OnGradeAdded;
+
+            // BREAKS BC delegate can only be assigned with += or -=
+            // book.GradeAdded = null;
+
+            EnterGrades(book);
+
+            var stats = book.GetStatistics();
+            Console.WriteLine(stats);
+
+        }
+
+        private static void EnterGrades(IBook book)
+        {
             while (true)
             {
                 System.Console.WriteLine("Enter a grade or enter Q to Quit");
@@ -35,8 +49,6 @@ namespace GradeBook
                 {
                     var grade = double.Parse(input);
                     book.AddGrade(grade);
-                    book.AddGrade('A');
-                    System.Console.WriteLine($"{grade} added");
                 }
                 // Catch ANY type of Exception
                 // catch(Exception ex) <- Don't do this in the wild - we don't know what kind of errors will occur here.
@@ -55,11 +67,18 @@ namespace GradeBook
                 {
                     Console.WriteLine("runs everytime.");
                 }
+
             }
+        }
 
-            var stats = book.ShowStatistics();
-            Console.WriteLine(stats);
-
+        static void OnGradeAdded(object sender, EventArgs e)
+        {
+            Console.WriteLine($"A Grade was added. {e}");
         }
     }
 }
+
+// PILLARS of OOP
+// Encapsulation - controls who has access to what
+// Inheritance - allows you to reused code across similar classes
+// Polymorphism - allows us to have objs of the same type that behave differently

@@ -1,15 +1,100 @@
 using System;
 using System.Collections.Generic;
-
+using System.IO;
 // UNIT Testing 
 // Write code that tests edge cases and common input to make sure your code is working working as intended.
 // We use a testrunner to run unit tests. xUnit.net is a test runner we will be using in this course
 namespace GradeBook
 {
-    public class Book
+    //  ONE FILE PER TYPE WITH C# Programming(We aren't doing that here lol)
+    //  Build a DELEGATE to define an EVENT
+    public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+    public class NamedObject
     {
-        //Write an explicit constructor if a constructor is not provided .NET does the default initialization
-        public Book(string name)
+        public NamedObject(string name)
+        {
+            Name = name;
+        }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+    }
+    // INTERFACE DEFINITION - looks similar to a Class definition but it is "pure" - it contains no implementation details.
+    // Interfaces only describe the Members that should be available on a specific type
+    public interface IBook
+    {
+        // notice no ACCESS MODIFIER here
+        void AddGrade(double grade);
+        Statistics GetStatistics();
+        string Name { get; }
+        event GradeAddedDelegate GradeAdded;
+    }
+
+
+    // Book is an abstract class that inherits the properties of NamedObject Class, and must have members describe in IBook Interface
+    // Cant specify multiply Inheritance but you can specify 0 or more Interfaces!!
+    public abstract class Book : NamedObject, IBook
+    {
+        protected Book(string name) : base(name)
+        {
+
+        }
+
+        public abstract event GradeAddedDelegate GradeAdded;
+
+        //  ABSTRACT method - anything that is a Book Base should have an AddGrade Member, 
+        //  but let the derived types figure out this implementations
+        public abstract void AddGrade(double grade);
+
+        // Heres a method thats in this class 
+        public abstract Statistics GetStatistics();
+    }
+
+
+
+    public class DiskBook : Book
+    {
+        public DiskBook(string name) : base(name)
+        {
+        }
+
+        public override event GradeAddedDelegate GradeAdded;
+
+        public override void AddGrade(double grade)
+        {
+
+            // wrapping with USING statements allows you to create and dispose of object. 
+            // Its implicitly running writer.Close(); writer.Dispose();
+            using (var writer = File.AppendText($"{Name}.txt"))
+            {
+                writer.WriteLine(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+
+            }
+            //writer.Dispose();
+        }
+
+        public override Statistics GetStatistics()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    // Book is a NamedObject (it is inheriting the Named object class)
+    public class InMemoryBook : Book
+    {
+        // CLASS CONSTRUCTOR
+        // Write an explicit constructor if a constructor is not provided .NET does the default initialization.
+        // The base() method is accessing the CONSTRUCTOR of the the base class - NamedObject
+        public InMemoryBook(string name) : base(name)
         {
             grades = new List<double>();
             // the this (keyword) refers to the object that is currently being operated on. 
@@ -19,11 +104,18 @@ namespace GradeBook
         // Field Definitition, looks very much like a variable declaration
 
         // Add grade is an INSTANCE MEMBER of the class book. 
-        public void AddGrade(double grade)
+        // override overides the METHOD provided in the Base class.
+        // In this case, it's overriding the AddGrade method of the BookBase class.
+        public override void AddGrade(double grade)
         {
             if (grade <= 100 && grade >= 0)
             {
                 grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    // AddGrade is the sender (1st arg), event args (2nd arg) can be passed along to send information i.e passing the value of the entered grade.
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -37,6 +129,7 @@ namespace GradeBook
         // The method GetGradeAverage is a MEMBER of the Class book
         public double GetGradeAverage()
         {
+
             // var (implicit typing) vs using explicity typing string, int, double, byte, etc.
             //Initialize a list
             double sum = 0.0;
@@ -49,8 +142,10 @@ namespace GradeBook
             avg = sum / grades.Count;
             return avg;
         }
+        // An EVENT much like a FIELD, METHOD, or PROPERTY can be a MEMBER within a Class
+        public override event GradeAddedDelegate GradeAdded;
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var result = new Statistics();
             var avg = this.GetGradeAverage();
@@ -155,31 +250,35 @@ namespace GradeBook
         // PROPERTIES
 
         // Access modifier (public)
-        public string Name
-        {
-            // Auto Property - shorthand version 
-            get;
-            // With the private access modifier, if an operation wants to write to name outside of the Book class, it cannot.
-            private set;
-            // get
-            // {
-            //     return name.ToUpper();
-            // }
-            // set
-            // {
-            //     // Implicit variable named value is accessible with your set method
-            //     if (value == null)
-            //     {
-            //     }
-            //     else if (!String.IsNullOrEmpty(value))
-            //     {
-            //         name = value;
-            //     }
-            // }
-        }
-// Property VS Field they are very similar but there are differences some come up during Serialization and Reflection. You can apply different access modifiers to get and set.
-        private string name;
-
-
+        // public string Name
+        // {
+        // Auto Property - shorthand version 
+        // get;
+        // With the private access modifier, if an operation wants to write to name outside of the Book class, it cannot.
+        // set;
+        // get
+        // {
+        //     return name.ToUpper();
+        // }
+        // set
+        // {
+        //     // Implicit variable named value is accessible with your set method
+        //     if (value == null)
+        //     {
+        //     }
+        //     else if (!String.IsNullOrEmpty(value))
+        //     {
+        //         name = value;
+        //     }
+        // }
     }
 }
+// Property VS Field they are very similar but there are differences some come up during Serialization and Reflection. You can apply different access modifiers to get and set.
+// private string name;
+
+// With the READONLY keyword, this field can only INITIALIZE or CHANGE in the constructor
+// readonly string category;
+
+// const fields are treated like they are static members in the Class.
+// public const string CATEGORY = "PSYOPS";
+
