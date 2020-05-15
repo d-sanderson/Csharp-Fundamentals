@@ -27,7 +27,8 @@ namespace GradeBook
             }
             else
             {
-                Console.WriteLine("Grade must be between 0 and 100");
+                // there is something wrong with one of the arguments in this method
+                throw new ArgumentException($"Invalid {nameof(grade)}");
             }
         }
         // ACCESS MODIFIERS
@@ -83,10 +84,10 @@ namespace GradeBook
             }
         }
 
-        public void ShowStatistics()
+        public string ShowStatistics()
         {
             var result = this.GetStatistics();
-            Console.WriteLine($"{Name}'s average grade is {result.Average:N2}. {Name}'s highest grade is {result.High}. {Name}'s lowest grade is {result.Low}");
+            return $"{Name}'s average grade is {result.Average:N2}, Their average letter Grade is {result.Letter}. {Name}'s highest grade is {result.High}. {Name}'s lowest grade is {result.Low}";
         }
 
         public double GetHighestGrade()

@@ -21,14 +21,33 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book("David");
-            book.AddGrade(53.4);
-            book.AddGrade(90.4);
-            book.AddGrade(79.4);
-            book.AddGrade(80.4);
-            book.AddGrade(-50.3);
-            var stats = book.GetStatistics();
-            book.ShowStatistics();
-            System.Console.WriteLine($"The letter is {stats.Letter}");
+            while (true)
+            {
+                System.Console.WriteLine("Enter a grade or enter Q to Quit");
+                var input = Console.ReadLine();
+                if (input == "Q")
+                {
+                    break;
+                }
+                // TRY CATCH BLOCK
+                // try the code below
+                try
+                {
+                    var grade = double.Parse(input);
+                    book.AddGrade(grade);
+                    System.Console.WriteLine($"{grade} added");
+                }
+                // Catch ANY type of exception
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    
+                }
+            }
+
+            var stats = book.ShowStatistics();
+            Console.WriteLine(stats);
+
         }
     }
 }
